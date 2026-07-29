@@ -79,7 +79,7 @@ const CricketProfileStep = ({ onBack }: CricketProfileStepProps) => {
         current_club: formData.currentClub || null,
         highest_level_played: formData.highestLevel || null,
         awards_achievements: formData.awards || null,
-        video_highlights_link: formData.videoLink || null,
+        
         resume_url: formData.resumeUrl || null,
         batting_skill: formData.battingSkill,
         bowling_skill: formData.bowlingSkill,
@@ -129,7 +129,7 @@ const CricketProfileStep = ({ onBack }: CricketProfileStepProps) => {
             current_club: playerRecord.current_club,
             highest_level_played: playerRecord.highest_level_played,
             awards_achievements: playerRecord.awards_achievements,
-            video_highlights_link: playerRecord.video_highlights_link,
+            
             resume_url: playerRecord.resume_url,
             batting_skill: playerRecord.batting_skill,
             bowling_skill: playerRecord.bowling_skill,
@@ -321,18 +321,6 @@ const CricketProfileStep = ({ onBack }: CricketProfileStepProps) => {
         />
       </div>
 
-      {/* Video Highlights Link */}
-      <div className="space-y-2">
-        <Label htmlFor="videoLink">Video Highlights Link (YouTube/Drive)</Label>
-        <Input 
-          id="videoLink" 
-          type="url"
-          placeholder="https://youtube.com/... or https://drive.google.com/..."
-          className="bg-input border-border"
-          value={formData.videoLink}
-          onChange={(e) => handleInputChange('videoLink', e.target.value)}
-        />
-      </div>
 
       {/* Player Resume Upload */}
       <div className="space-y-2">
