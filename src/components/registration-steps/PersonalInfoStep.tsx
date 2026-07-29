@@ -3,7 +3,7 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { User, Mail, Phone, MapPin, Calendar, ChevronRight } from "lucide-react";
+import { User, Phone, MapPin, Calendar, ChevronRight } from "lucide-react";
 import FileUpload from "@/components/ui/file-upload";
 import { useRegistration } from "@/contexts/RegistrationContext";
 import { useToast } from "@/hooks/use-toast";
@@ -33,10 +33,9 @@ const PersonalInfoStep = ({ onNext }: PersonalInfoStepProps) => {
 
   const validateAndNext = () => {
     // Validate required fields
-    if (!formData.fullName || !formData.jerseyName || !formData.dateOfBirth || 
-        !formData.gender || !formData.nationality || !formData.state || 
-        !formData.city || !formData.fullAddress || !formData.mobileNumber ||
-        !formData.profilePhotoUrl || !formData.govIdUrl) {
+    if (!formData.fullName || !formData.jerseyName || !formData.dateOfBirth ||
+        !formData.gender || !formData.city || !formData.fullAddress ||
+        !formData.mobileNumber || !formData.profilePhotoUrl || !formData.govIdUrl) {
       toast({
         title: "Missing Information",
         description: "Please fill all required fields and upload required documents.",
@@ -96,8 +95,8 @@ const PersonalInfoStep = ({ onNext }: PersonalInfoStepProps) => {
             <Calendar className="h-4 w-4 text-primary" />
             Date of Birth *
           </Label>
-          <Input 
-            id="dob" 
+          <Input
+            id="dob"
             type="date"
             className="bg-input border-border"
             value={formData.dateOfBirth}
@@ -120,46 +119,14 @@ const PersonalInfoStep = ({ onNext }: PersonalInfoStepProps) => {
           </Select>
         </div>
 
-        {/* Nationality */}
-        <div className="space-y-2">
-          <Label htmlFor="nationality">Nationality *</Label>
-          <Select value={formData.nationality} onValueChange={(value) => handleInputChange('nationality', value)}>
-            <SelectTrigger className="bg-input border-border">
-              <SelectValue placeholder="Select" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="India">India</SelectItem>
-              <SelectItem value="Other">Other</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* State */}
-        <div className="space-y-2">
-          <Label htmlFor="state" className="flex items-center gap-2">
-            <MapPin className="h-4 w-4 text-primary" />
-            State *
-          </Label>
-          <Select value={formData.state} onValueChange={(value) => handleInputChange('state', value)}>
-            <SelectTrigger className="bg-input border-border">
-              <SelectValue placeholder="Select state" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="Andhra Pradesh">Andhra Pradesh</SelectItem>
-              <SelectItem value="Karnataka">Karnataka</SelectItem>
-              <SelectItem value="Maharashtra">Maharashtra</SelectItem>
-              <SelectItem value="Telangana">Telangana</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
-
         {/* City */}
         <div className="space-y-2">
-          <Label htmlFor="city">City *</Label>
-          <Input 
-            id="city" 
+          <Label htmlFor="city" className="flex items-center gap-2">
+            <MapPin className="h-4 w-4 text-primary" />
+            City *
+          </Label>
+          <Input
+            id="city"
             placeholder="Enter your city"
             className="bg-input border-border"
             value={formData.city}
@@ -181,38 +148,20 @@ const PersonalInfoStep = ({ onNext }: PersonalInfoStepProps) => {
         />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* Mobile Number */}
-        <div className="space-y-2">
-          <Label htmlFor="mobile" className="flex items-center gap-2">
-            <Phone className="h-4 w-4 text-primary" />
-            Mobile Number *
-          </Label>
-          <Input 
-            id="mobile" 
-            type="tel"
-            placeholder="+91 XXXXX XXXXX"
-            className="bg-input border-border"
-            value={formData.mobileNumber}
-            onChange={(e) => handleInputChange('mobileNumber', e.target.value)}
-          />
-        </div>
-
-        {/* Email */}
-        <div className="space-y-2">
-          <Label htmlFor="email" className="flex items-center gap-2">
-            <Mail className="h-4 w-4 text-primary" />
-            Email Address (Optional)
-          </Label>
-          <Input 
-            id="email" 
-            type="email"
-            placeholder="your.email@example.com"
-            className="bg-input border-border"
-            value={formData.email}
-            onChange={(e) => handleInputChange('email', e.target.value)}
-          />
-        </div>
+      {/* Mobile Number */}
+      <div className="space-y-2">
+        <Label htmlFor="mobile" className="flex items-center gap-2">
+          <Phone className="h-4 w-4 text-primary" />
+          Mobile Number *
+        </Label>
+        <Input
+          id="mobile"
+          type="tel"
+          placeholder="+91 XXXXX XXXXX"
+          className="bg-input border-border"
+          value={formData.mobileNumber}
+          onChange={(e) => handleInputChange('mobileNumber', e.target.value)}
+        />
       </div>
 
       {/* Photo Upload */}
