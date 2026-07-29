@@ -15,10 +15,10 @@ const Index = () => {
       <footer className="py-8 px-4 border-t border-border">
         <div className="container mx-auto text-center">
           <p className="text-muted-foreground text-sm">
-            © 2025 Masur Premier League. All rights reserved.
+            © 2026 Masur Premier League. All rights reserved.
           </p>
           <p className="text-xs text-muted-foreground mt-2">
-            Play Fearless. Play for Glory. Play MPL 2025.
+            Play Fearless. Play for Glory. Play MPL 2026.
           </p>
         </div>
       </footer>

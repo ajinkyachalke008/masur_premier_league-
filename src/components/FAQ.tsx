@@ -8,8 +8,8 @@ import {
 const FAQ = () => {
   const faqs = [
     {
-      question: "Who can register for MPL 2025?",
-      answer: "Any cricket player aged 16 and above can register for the Masur Premier League 2025. We welcome players from all playing levels, from rookies to experienced cricketers."
+      question: "Who can register for MPL 2026?",
+      answer: "Any cricket player aged 16 and above can register for the Masur Premier League 2026. We welcome players from all playing levels, from rookies to experienced cricketers."
     },
     {
       question: "What documents do I need to submit?",
@@ -17,7 +17,7 @@ const FAQ = () => {
     },
     {
       question: "Is there a registration fee?",
-      answer: "Registration for MPL 2025 is completely free. However, selected players will need to declare their auction base price during the registration process."
+      answer: "Registration for MPL 2026 is completely free. However, selected players will need to declare their auction base price during the registration process."
     },
     {
       question: "How will I know if my registration is approved?",
@@ -25,7 +25,7 @@ const FAQ = () => {
     },
     {
       question: "What happens after I'm verified?",
-      answer: "Once verified, you'll be eligible for the MPL 2025 auction. Your player profile will be available to team owners and franchises for selection during the official auction event."
+      answer: "Once verified, you'll be eligible for the MPL 2026 auction. Your player profile will be available to team owners and franchises for selection during the official auction event."
     },
     {
       question: "Can I edit my registration after submission?",
@@ -37,7 +37,7 @@ const FAQ = () => {
     },
     {
       question: "When is the registration deadline?",
-      answer: "Registration closes on March 31, 2025 at 11:59 PM. Make sure to complete your registration before the countdown reaches zero!"
+      answer: "Registration closes on March 31, 2026 at 11:59 PM. Make sure to complete your registration before the countdown reaches zero!"
     }
   ];
 
@@ -49,7 +49,7 @@ const FAQ = () => {
             FREQUENTLY ASKED QUESTIONS
           </h2>
           <p className="text-muted-foreground text-lg">
-            Everything you need to know about MPL 2025 registration
+            Everything you need to know about MPL 2026 registration
           </p>
         </div>
 

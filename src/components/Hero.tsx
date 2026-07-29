@@ -42,12 +42,12 @@ const Hero = () => {
         </h1>
         
         <div className="text-6xl md:text-8xl font-black mb-8 text-accent text-glow-gold">
-          2025
+          2026
         </div>
 
         {/* Tagline */}
         <p className="text-xl md:text-2xl mb-8 text-muted-foreground max-w-2xl mx-auto font-medium tracking-wide">
-          Play Fearless. Play for Glory. Play MPL 2025.
+          Play Fearless. Play for Glory. Play MPL 2026.
         </p>
 
         {/* CTA Button */}
