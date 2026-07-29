@@ -14,7 +14,99 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      players: {
+        Row: {
+          awards_achievements: string | null
+          batting_skill: number | null
+          batting_style: string | null
+          bowling_skill: number | null
+          bowling_style: string | null
+          city: string | null
+          created_at: string
+          current_club: string | null
+          date_of_birth: string | null
+          experience_level: string | null
+          fielding_skill: number | null
+          fitness_skill: number | null
+          full_address: string | null
+          full_name: string
+          gender: string | null
+          gov_id_url: string | null
+          highest_level_played: string | null
+          id: string
+          jersey_name: string | null
+          mobile_number: string | null
+          playing_role: string | null
+          preferred_batting_order: string | null
+          profile_photo_url: string | null
+          registration_id: string
+          resume_url: string | null
+          status: string | null
+          user_id: string | null
+          video_highlights_link: string | null
+        }
+        Insert: {
+          awards_achievements?: string | null
+          batting_skill?: number | null
+          batting_style?: string | null
+          bowling_skill?: number | null
+          bowling_style?: string | null
+          city?: string | null
+          created_at?: string
+          current_club?: string | null
+          date_of_birth?: string | null
+          experience_level?: string | null
+          fielding_skill?: number | null
+          fitness_skill?: number | null
+          full_address?: string | null
+          full_name: string
+          gender?: string | null
+          gov_id_url?: string | null
+          highest_level_played?: string | null
+          id?: string
+          jersey_name?: string | null
+          mobile_number?: string | null
+          playing_role?: string | null
+          preferred_batting_order?: string | null
+          profile_photo_url?: string | null
+          registration_id?: string
+          resume_url?: string | null
+          status?: string | null
+          user_id?: string | null
+          video_highlights_link?: string | null
+        }
+        Update: {
+          awards_achievements?: string | null
+          batting_skill?: number | null
+          batting_style?: string | null
+          bowling_skill?: number | null
+          bowling_style?: string | null
+          city?: string | null
+          created_at?: string
+          current_club?: string | null
+          date_of_birth?: string | null
+          experience_level?: string | null
+          fielding_skill?: number | null
+          fitness_skill?: number | null
+          full_address?: string | null
+          full_name?: string
+          gender?: string | null
+          gov_id_url?: string | null
+          highest_level_played?: string | null
+          id?: string
+          jersey_name?: string | null
+          mobile_number?: string | null
+          playing_role?: string | null
+          preferred_batting_order?: string | null
+          profile_photo_url?: string | null
+          registration_id?: string
+          resume_url?: string | null
+          status?: string | null
+          user_id?: string | null
+          video_highlights_link?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
