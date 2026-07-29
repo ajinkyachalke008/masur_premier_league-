@@ -44,31 +44,25 @@ const FileUpload = ({
     setFileName(file.name);
 
     try {
-      const { data: { user } } = await supabase.auth.getUser();
-      if (!user) {
-        toast({
-          title: "Authentication required",
-          description: "Please log in to upload files",
-          variant: "destructive",
-        });
-        return;
-      }
-
       const fileExt = file.name.split(".").pop();
-      const filePath = `${folder}/${user.id}/${Date.now()}.${fileExt}`;
+      const filePath = `${folder}/${crypto.randomUUID()}.${fileExt}`;
 
       const { error: uploadError } = await supabase.storage
         .from("player-files")
-        .upload(filePath, file);
+        .upload(filePath, file, { upsert: false });
 
       if (uploadError) throw uploadError;
 
-      const { data: { publicUrl } } = supabase.storage
+      // Bucket is private — create a long-lived signed URL (10 years) for sharing.
+      const { data: signed, error: signedError } = await supabase.storage
         .from("player-files")
-        .getPublicUrl(filePath);
+        .createSignedUrl(filePath, 60 * 60 * 24 * 365 * 10);
 
-      setUploadedFile(publicUrl);
-      onUploadComplete?.(publicUrl);
+      if (signedError) throw signedError;
+
+      const url = signed?.signedUrl ?? "";
+      setUploadedFile(url);
+      onUploadComplete?.(url);
 
       toast({
         title: "Upload successful",

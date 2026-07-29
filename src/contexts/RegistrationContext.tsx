@@ -5,12 +5,9 @@ export interface PersonalInfoData {
   jerseyName: string;
   dateOfBirth: string;
   gender: string;
-  nationality: string;
-  state: string;
   city: string;
   fullAddress: string;
   mobileNumber: string;
-  email: string;
   profilePhotoUrl: string;
   govIdUrl: string;
 }
@@ -46,12 +43,9 @@ const initialPersonalInfo: PersonalInfoData = {
   jerseyName: '',
   dateOfBirth: '',
   gender: '',
-  nationality: '',
-  state: '',
   city: '',
   fullAddress: '',
   mobileNumber: '',
-  email: '',
   profilePhotoUrl: '',
   govIdUrl: '',
 };

@@ -52,40 +52,23 @@ const CricketProfileStep = ({ onBack }: CricketProfileStepProps) => {
     setIsSubmitting(true);
 
     try {
-      // Get current user
-      const { data: { user }, error: userError } = await supabase.auth.getUser();
-      
-      if (userError || !user) {
-        toast({
-          title: "Authentication Error",
-          description: "Please log in to submit your registration.",
-          variant: "destructive",
-        });
-        setIsSubmitting(false);
-        return;
-      }
-
       // Save cricket profile to context
       updateCricketProfile(formData);
 
       // Combine bowling style and hand
-      const bowlingStyleFull = formData.bowlingHand && formData.bowlingStyle 
+      const bowlingStyleFull = formData.bowlingHand && formData.bowlingStyle
         ? `${formData.bowlingHand} ${formData.bowlingStyle}`
         : formData.bowlingStyle || null;
 
-      // Insert into players table
+      // Insert into players table (anonymous submission allowed)
       const insertData: any = {
-        user_id: user.id,
         full_name: personalInfo.fullName,
         jersey_name: personalInfo.jerseyName,
         date_of_birth: personalInfo.dateOfBirth,
         gender: personalInfo.gender,
-        nationality: personalInfo.nationality,
-        state: personalInfo.state,
         city: personalInfo.city,
         full_address: personalInfo.fullAddress,
         mobile_number: personalInfo.mobileNumber,
-        email: personalInfo.email || null,
         profile_photo_url: personalInfo.profilePhotoUrl,
         gov_id_url: personalInfo.govIdUrl,
         playing_role: formData.playingRole,
@@ -133,12 +116,9 @@ const CricketProfileStep = ({ onBack }: CricketProfileStepProps) => {
             jersey_name: playerRecord.jersey_name,
             date_of_birth: playerRecord.date_of_birth,
             gender: playerRecord.gender,
-            nationality: playerRecord.nationality,
-            state: playerRecord.state,
             city: playerRecord.city,
             full_address: playerRecord.full_address,
             mobile_number: playerRecord.mobile_number,
-            email: playerRecord.email,
             profile_photo_url: playerRecord.profile_photo_url,
             gov_id_url: playerRecord.gov_id_url,
             playing_role: playerRecord.playing_role,
