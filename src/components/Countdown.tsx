@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Card } from "@/components/ui/card";
 
 const Countdown = () => {
-  const targetDate = new Date('2025-03-31T23:59:59').getTime();
+  const targetDate = new Date('2026-03-31T23:59:59').getTime();
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
@@ -50,7 +50,7 @@ const Countdown = () => {
             REGISTRATION CLOSES IN
           </h2>
           <p className="text-muted-foreground text-lg">
-            Don't miss your chance to be part of MPL 2025
+            Don't miss your chance to be part of MPL 2026
           </p>
         </div>
 

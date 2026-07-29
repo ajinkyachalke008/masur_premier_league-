@@ -51,7 +51,7 @@ const RegistrationForm = () => {
               PLAYER REGISTRATION
             </h2>
             <p className="text-muted-foreground text-lg mb-8">
-              Complete registration in 2 simple steps for MPL 2025
+              Complete registration in 2 simple steps for MPL 2026
             </p>
           </div>
 

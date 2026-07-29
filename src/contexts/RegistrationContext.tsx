@@ -22,7 +22,7 @@ export interface CricketProfileData {
   currentClub: string;
   highestLevel: string;
   awards: string;
-  videoLink: string;
+  
   resumeUrl: string;
   battingSkill: number;
   bowlingSkill: number;
@@ -60,7 +60,7 @@ const initialCricketProfile: CricketProfileData = {
   currentClub: '',
   highestLevel: '',
   awards: '',
-  videoLink: '',
+  
   resumeUrl: '',
   battingSkill: 5,
   bowlingSkill: 5,
