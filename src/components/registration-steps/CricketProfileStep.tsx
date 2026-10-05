@@ -60,51 +60,44 @@ const CricketProfileStep = ({ onBack }: CricketProfileStepProps) => {
         ? `${formData.bowlingHand} ${formData.bowlingStyle}`
         : formData.bowlingStyle || null;
 
+      const registrationId = 'MPL-' + crypto.randomUUID().replace(/-/g, '').slice(0, 8).toUpperCase();
+      const createdAt = new Date().toISOString();
+
       // Insert into players table (anonymous submission allowed)
       const insertData: any = {
+        registration_id: registrationId,
         full_name: personalInfo.fullName,
-        jersey_name: personalInfo.jerseyName,
-        date_of_birth: personalInfo.dateOfBirth,
-        gender: null,
-        city: personalInfo.city,
-        full_address: null,
-        mobile_number: personalInfo.mobileNumber,
-        profile_photo_url: personalInfo.profilePhotoUrl,
-        gov_id_url: null,
+        jersey_name: personalInfo.jerseyName || null,
+        date_of_birth: personalInfo.dateOfBirth || null,
+        city: personalInfo.city || null,
+        mobile_number: personalInfo.mobileNumber || null,
+        profile_photo_url: personalInfo.profilePhotoUrl || null,
         playing_role: formData.playingRole,
         batting_style: formData.battingStyle,
         bowling_style: bowlingStyleFull,
-        preferred_batting_order: formData.preferredBattingOrder || null,
-        experience_level: formData.experienceLevel,
-        current_club: formData.currentClub || null,
-        highest_level_played: formData.highestLevel || null,
-        awards_achievements: formData.awards || null,
-        
-        resume_url: formData.resumeUrl || null,
+        awards_achievements: formData.awards?.trim() || null,
         batting_skill: formData.battingSkill,
         bowling_skill: formData.bowlingSkill,
         fielding_skill: formData.fieldingSkill,
         fitness_skill: formData.fitnessSkill,
         status: 'submitted',
       };
-      
-      // @ts-ignore
-      const { data: playerData, error: insertError } = await supabase
-        .from('players')
-        .insert(insertData)
-        .select()
-        .single();
 
-      if (insertError || !playerData) {
+      // Insert without reading back (visitors can't read rows)
+      const { error: insertError } = await supabase.from('players').insert(insertData);
+
+      if (insertError) {
         console.error('Insert error:', insertError);
         toast({
           title: "Submission Failed",
-          description: insertError?.message || "Failed to submit registration. Please try again.",
+          description: insertError.message || "Failed to submit registration. Please try again.",
           variant: "destructive",
         });
         setIsSubmitting(false);
         return;
       }
+
+      const playerData = { ...insertData, created_at: createdAt };
 
       // Send Telegram notification
       try {
