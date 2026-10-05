@@ -12,7 +12,7 @@ Deno.serve(async (req) => {
     const { pin } = await req.json();
     if (pin !== ADMIN_PIN) {
       return new Response(JSON.stringify({ error: "Invalid PIN" }), {
-        status: 401,
+        status: 200,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       });
     }

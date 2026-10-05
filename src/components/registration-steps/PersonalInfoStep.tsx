@@ -1,7 +1,5 @@
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { User, Phone, MapPin, Calendar, ChevronRight } from "lucide-react";
 import FileUpload from "@/components/ui/file-upload";
@@ -27,15 +25,14 @@ const PersonalInfoStep = ({ onNext }: PersonalInfoStepProps) => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
-  const handleFileUpload = (field: 'profilePhotoUrl' | 'govIdUrl', url: string) => {
+  const handleFileUpload = (field: 'profilePhotoUrl', url: string) => {
     setFormData(prev => ({ ...prev, [field]: url }));
   };
 
   const validateAndNext = () => {
     // Validate required fields
     if (!formData.fullName || !formData.jerseyName || !formData.dateOfBirth ||
-        !formData.gender || !formData.city || !formData.fullAddress ||
-        !formData.mobileNumber || !formData.profilePhotoUrl || !formData.govIdUrl) {
+        !formData.city || !formData.mobileNumber || !formData.profilePhotoUrl) {
       toast({
         title: "Missing Information",
         description: "Please fill all required fields and upload required documents.",
@@ -88,7 +85,7 @@ const PersonalInfoStep = ({ onNext }: PersonalInfoStepProps) => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Date of Birth */}
         <div className="space-y-2">
           <Label htmlFor="dob" className="flex items-center gap-2">
@@ -102,21 +99,6 @@ const PersonalInfoStep = ({ onNext }: PersonalInfoStepProps) => {
             value={formData.dateOfBirth}
             onChange={(e) => handleInputChange('dateOfBirth', e.target.value)}
           />
-        </div>
-
-        {/* Gender */}
-        <div className="space-y-2">
-          <Label htmlFor="gender">Gender *</Label>
-          <Select value={formData.gender} onValueChange={(value) => handleInputChange('gender', value)}>
-            <SelectTrigger className="bg-input border-border">
-              <SelectValue placeholder="Select gender" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="Male">Male</SelectItem>
-              <SelectItem value="Female">Female</SelectItem>
-              <SelectItem value="Other">Other</SelectItem>
-            </SelectContent>
-          </Select>
         </div>
 
         {/* City */}
@@ -133,19 +115,6 @@ const PersonalInfoStep = ({ onNext }: PersonalInfoStepProps) => {
             onChange={(e) => handleInputChange('city', e.target.value)}
           />
         </div>
-      </div>
-
-      {/* Address */}
-      <div className="space-y-2">
-        <Label htmlFor="address">Full Address *</Label>
-        <Textarea 
-          id="address" 
-          placeholder="Enter your complete address"
-          className="bg-input border-border resize-none"
-          rows={3}
-          value={formData.fullAddress}
-          onChange={(e) => handleInputChange('fullAddress', e.target.value)}
-        />
       </div>
 
       {/* Mobile Number */}
@@ -175,20 +144,6 @@ const PersonalInfoStep = ({ onNext }: PersonalInfoStepProps) => {
           maxSizeMB={5}
           label="Profile Photo"
           onUploadComplete={(url) => handleFileUpload('profilePhotoUrl', url)}
-        />
-      </div>
-
-      {/* Government ID Upload */}
-      <div className="space-y-2">
-        <Label>
-          Government ID (Aadhaar/Passport/Driving License) *
-        </Label>
-        <FileUpload
-          folder="government-ids"
-          accept=".pdf,.jpg,.jpeg,.png"
-          maxSizeMB={10}
-          label="Government ID"
-          onUploadComplete={(url) => handleFileUpload('govIdUrl', url)}
         />
       </div>
 
