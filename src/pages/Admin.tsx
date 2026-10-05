@@ -111,7 +111,7 @@ const Admin = () => {
                   <div className="text-xs text-muted-foreground">{p.registration_id}</div>
                   <div className="text-xl font-bold">{p.full_name}</div>
                   <div className="text-sm text-muted-foreground">
-                    {p.playing_role} · {p.experience_level} · {p.city}
+                    {p.playing_role} · {p.city}
                   </div>
                 </div>
                 <div className="text-xs text-muted-foreground">
@@ -125,9 +125,6 @@ const Admin = () => {
                 <Field label="Mobile" value={p.mobile_number} />
                 <Field label="Batting" value={p.batting_style} />
                 <Field label="Bowling" value={p.bowling_style} />
-                <Field label="Batting Order" value={p.preferred_batting_order} />
-                <Field label="Club" value={p.current_club} />
-                <Field label="Highest Level" value={p.highest_level_played} />
                 <Field label="Skills" value={`Bat ${p.batting_skill}/10 · Bowl ${p.bowling_skill}/10 · Field ${p.fielding_skill}/10 · Fit ${p.fitness_skill}/10`} />
                 <Field label="Address" value={p.full_address} />
                 <Field label="Awards" value={p.awards_achievements} />
