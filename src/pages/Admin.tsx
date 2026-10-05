@@ -111,7 +111,7 @@ const Admin = () => {
                   <div className="text-xs text-muted-foreground">{p.registration_id}</div>
                   <div className="text-xl font-bold">{p.full_name}</div>
                   <div className="text-sm text-muted-foreground">
-                    {p.playing_role} · {p.experience_level} · {p.city}
+                    {p.playing_role} · {p.city}
                   </div>
                 </div>
                 <div className="text-xs text-muted-foreground">

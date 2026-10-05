@@ -40,10 +40,10 @@ const CricketProfileStep = ({ onBack }: CricketProfileStepProps) => {
 
   const handleSubmit = async () => {
     // Validate required fields
-    if (!formData.playingRole || !formData.battingStyle || !formData.experienceLevel) {
+    if (!formData.playingRole || !formData.battingStyle) {
       toast({
         title: "Missing Information",
-        description: "Please fill all required fields (Playing Role, Batting Style, Experience Level).",
+        description: "Please fill all required fields (Playing Role, Batting Style).",
         variant: "destructive",
       });
       return;
@@ -239,71 +239,6 @@ const CricketProfileStep = ({ onBack }: CricketProfileStepProps) => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* Preferred Batting Order */}
-        <div className="space-y-2">
-          <Label htmlFor="battingOrder">Preferred Batting Order</Label>
-          <Select value={formData.preferredBattingOrder} onValueChange={(value) => handleInputChange('preferredBattingOrder', value)}>
-            <SelectTrigger className="bg-input border-border">
-              <SelectValue placeholder="Select position" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="Opener (1-2)">Opener (1-2)</SelectItem>
-              <SelectItem value="Top Order (3-4)">Top Order (3-4)</SelectItem>
-              <SelectItem value="Middle Order (5-7)">Middle Order (5-7)</SelectItem>
-              <SelectItem value="Lower Order (8-11)">Lower Order (8-11)</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
-
-        {/* Experience Level */}
-        <div className="space-y-2">
-          <Label htmlFor="experience">Experience Level *</Label>
-          <Select value={formData.experienceLevel} onValueChange={(value) => handleInputChange('experienceLevel', value)}>
-            <SelectTrigger className="bg-input border-border">
-              <SelectValue placeholder="Select level" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="Beginner (0-2 years)">Beginner (0-2 years)</SelectItem>
-              <SelectItem value="Intermediate (2-5 years)">Intermediate (2-5 years)</SelectItem>
-              <SelectItem value="Advanced (5+ years)">Advanced (5+ years)</SelectItem>
-              <SelectItem value="Professional">Professional</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
-      </div>
-
-      {/* Current Club/Academy */}
-      <div className="space-y-2">
-        <Label htmlFor="club" className="flex items-center gap-2">
-          <Trophy className="h-4 w-4 text-primary" />
-          Current Club/Academy
-        </Label>
-        <Input 
-          id="club" 
-          placeholder="Name of your current club or academy"
-          className="bg-input border-border"
-          value={formData.currentClub}
-          onChange={(e) => handleInputChange('currentClub', e.target.value)}
-        />
-      </div>
-
-      {/* Highest Level Played */}
-      <div className="space-y-2">
-        <Label htmlFor="highestLevel">Highest Level Played</Label>
-        <Select value={formData.highestLevel} onValueChange={(value) => handleInputChange('highestLevel', value)}>
-          <SelectTrigger className="bg-input border-border">
-            <SelectValue placeholder="Select highest level" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="Local/Gully Cricket">Local/Gully Cricket</SelectItem>
-            <SelectItem value="District Level">District Level</SelectItem>
-            <SelectItem value="State Level">State Level</SelectItem>
-            <SelectItem value="National Level">National Level</SelectItem>
-            <SelectItem value="International">International</SelectItem>
-          </SelectContent>
-        </Select>
-      </div>
 
       {/* Awards & Achievements */}
       <div className="space-y-2">
@@ -318,21 +253,6 @@ const CricketProfileStep = ({ onBack }: CricketProfileStepProps) => {
           rows={3}
           value={formData.awards}
           onChange={(e) => handleInputChange('awards', e.target.value)}
-        />
-      </div>
-
-
-      {/* Player Resume Upload */}
-      <div className="space-y-2">
-        <Label>
-          Player Résumé (PDF)
-        </Label>
-        <FileUpload
-          folder="resumes"
-          accept=".pdf"
-          maxSizeMB={5}
-          label="Cricket Résumé"
-          onUploadComplete={handleFileUpload}
         />
       </div>
 
