@@ -286,6 +286,35 @@ const CricketProfileStep = ({ onBack }: CricketProfileStepProps) => {
           <Send className="ml-2 h-4 w-4" />
         </Button>
       </div>
+
+      {/* Celebration Popup */}
+      <Dialog open={showCelebration} onOpenChange={setShowCelebration}>
+        <DialogContent className="text-center sm:max-w-md">
+          <DialogHeader>
+            <div className="flex justify-center mb-4">
+              <div className="w-20 h-20 rounded-full bg-accent/20 flex items-center justify-center animate-bounce">
+                <PartyPopper className="h-10 w-10 text-accent" />
+              </div>
+            </div>
+            <DialogTitle className="text-3xl font-black text-center">
+              🎉 Registration Complete! 🎉
+            </DialogTitle>
+            <DialogDescription className="text-center text-base pt-2">
+              Congratulations! Your registration for MPL 2026 has been submitted successfully.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="my-4 p-4 rounded-lg bg-card border border-accent/30">
+            <p className="text-sm text-muted-foreground mb-1">Your Registration ID</p>
+            <p className="text-2xl font-black text-accent tracking-wider">{confirmedRegId}</p>
+          </div>
+          <p className="text-sm text-muted-foreground">
+            Save this ID. We'll verify your payment and contact you soon!
+          </p>
+          <Button className="btn-hero w-full mt-4" onClick={() => setShowCelebration(false)}>
+            Done
+          </Button>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
