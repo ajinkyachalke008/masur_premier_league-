@@ -5,7 +5,7 @@ import { toast } from "@/hooks/use-toast";
 import { Button } from "./button";
 
 interface FileUploadProps {
-  folder: "profile-photos" | "government-ids" | "resumes" | "medical-certs";
+  folder: "profile-photos" | "payment-screenshots" | "government-ids" | "resumes" | "medical-certs";
   accept: string;
   maxSizeMB: number;
   label: string;

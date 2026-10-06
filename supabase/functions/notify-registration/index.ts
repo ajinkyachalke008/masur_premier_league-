@@ -29,6 +29,7 @@ interface RegistrationData {
   awards_achievements?: string;
   video_highlights_link?: string;
   resume_url?: string;
+  payment_screenshot_url?: string;
   batting_skill?: number;
   bowling_skill?: number;
   fielding_skill?: number;
@@ -137,12 +138,12 @@ const formatTelegramMessage = (data: RegistrationData): string => {
   sections.push('━━━━━━━━━━━━━━━━━━━━━━━━━');
   sections.push(`${data.profile_photo_url ? '✅' : '❌'} Profile Photo`);
   sections.push(`${data.gov_id_url ? '✅' : '❌'} Government ID`);
-  sections.push(`${data.resume_url ? '✅' : '❌'} Cricket Résumé`);
+  sections.push(`${data.payment_screenshot_url ? '✅' : '❌'} Payment Screenshot`);
   if (data.video_highlights_link) sections.push(`\n🎥 Highlights: ${data.video_highlights_link}`);
   sections.push('');
 
   // Status
-  sections.push('✅ Status: Submitted - Pending Review');
+  sections.push('💰 Status: Payment submitted - please verify');
 
   return sections.join('\n');
 };
@@ -155,7 +156,16 @@ serve(async (req) => {
 
   try {
     const botToken = Deno.env.get('TELEGRAM_BOT_TOKEN');
-    const chatId = Deno.env.get('TELEGRAM_CHAT_ID');
+    let chatId = Deno.env.get('TELEGRAM_CHAT_ID');
+    if (botToken && !chatId) {
+      // Auto-detect: use the most recent chat that messaged the bot
+      const u = await fetch(`https://api.telegram.org/bot${botToken}/getUpdates`).then(r => r.json()).catch(() => null);
+      const list = u?.result ?? [];
+      for (let i = list.length - 1; i >= 0; i--) {
+        const c = (list[i].message ?? list[i].my_chat_member ?? list[i].channel_post)?.chat?.id;
+        if (c) { chatId = String(c); break; }
+      }
+    }
 
     if (!botToken || !chatId) {
       console.warn('Telegram credentials not configured - skipping notification');
@@ -178,7 +188,6 @@ serve(async (req) => {
       body: JSON.stringify({
         chat_id: chatId,
         text: message,
-        parse_mode: 'HTML',
       }),
     });
 
@@ -186,6 +195,25 @@ serve(async (req) => {
       const error = await telegramResponse.text();
       console.error('Telegram API error:', error);
       throw new Error(`Telegram API error: ${error}`);
+    }
+
+    const photos: [string | undefined, string][] = [
+      [data.profile_photo_url, `📸 Profile photo - ${data.full_name} (${data.registration_id})`],
+      [data.payment_screenshot_url, `💰 Payment screenshot - ${data.full_name} (${data.registration_id})`],
+    ];
+    for (const [url, caption] of photos) {
+      if (!url) continue;
+      const r = await fetch(`https://api.telegram.org/bot${botToken}/sendPhoto`, {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ chat_id: chatId, photo: url, caption }),
+      });
+      if (!r.ok) {
+        // fallback: send as document link
+        await fetch(`https://api.telegram.org/bot${botToken}/sendDocument`, {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ chat_id: chatId, document: url, caption }),
+        });
+      }
     }
 
     console.log('Notification sent successfully for:', data.registration_id);

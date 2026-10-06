@@ -142,7 +142,7 @@ const Admin = () => {
                 )}
                 {p.resume_url && (
                   <a href={p.resume_url} target="_blank" rel="noopener noreferrer">
-                    <Button size="sm" variant="outline"><ExternalLink className="h-3 w-3 mr-1" /> Résumé</Button>
+                    <Button size="sm" variant="outline"><ExternalLink className="h-3 w-3 mr-1" /> Payment Screenshot</Button>
                   </a>
                 )}
               </div>
