@@ -22,6 +22,8 @@ const CricketProfileStep = ({ onBack }: CricketProfileStepProps) => {
   const { personalInfo, cricketProfile, updateCricketProfile, resetForm } = useRegistration();
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showCelebration, setShowCelebration] = useState(false);
+  const [confirmedRegId, setConfirmedRegId] = useState("");
   
   const [formData, setFormData] = useState(cricketProfile);
 
