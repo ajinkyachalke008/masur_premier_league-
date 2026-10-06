@@ -62,7 +62,7 @@ const formatTelegramMessage = (data: RegistrationData): string => {
   const sections: string[] = [];
 
   // Header
-  sections.push('🏏 NEW PLAYER REGISTRATION - MPL 2025');
+  sections.push('🏏 NEW PLAYER REGISTRATION - MPL 2026');
   sections.push('━━━━━━━━━━━━━━━━━━━━━━━━━\n');
 
   // Registration Info
@@ -158,8 +158,11 @@ serve(async (req) => {
     const chatId = Deno.env.get('TELEGRAM_CHAT_ID');
 
     if (!botToken || !chatId) {
-      console.error('Missing Telegram credentials');
-      throw new Error('Telegram credentials not configured');
+      console.warn('Telegram credentials not configured - skipping notification');
+      return new Response(
+        JSON.stringify({ success: true, skipped: true, message: 'Telegram not configured' }),
+        { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
     }
 
     const data: RegistrationData = await req.json();
