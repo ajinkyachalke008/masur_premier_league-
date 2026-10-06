@@ -148,10 +148,8 @@ const CricketProfileStep = ({ onBack }: CricketProfileStepProps) => {
       }
 
       const playerRecord = playerData as any;
-      toast({
-        title: "Registration Complete! 🎉",
-        description: `Your registration ID is: ${playerRecord.registration_id}. We'll contact you soon!`,
-      });
+      setConfirmedRegId(playerRecord.registration_id);
+      setShowCelebration(true);
 
       // Reset form
       resetForm();
