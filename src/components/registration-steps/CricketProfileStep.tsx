@@ -11,6 +11,8 @@ import qrAsset from "@/assets/payment-qr.png.asset.json";
 import { useRegistration } from "@/contexts/RegistrationContext";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { PartyPopper } from "lucide-react";
 
 interface CricketProfileStepProps {
   onBack: () => void;
@@ -20,6 +22,8 @@ const CricketProfileStep = ({ onBack }: CricketProfileStepProps) => {
   const { personalInfo, cricketProfile, updateCricketProfile, resetForm } = useRegistration();
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showCelebration, setShowCelebration] = useState(false);
+  const [confirmedRegId, setConfirmedRegId] = useState("");
   
   const [formData, setFormData] = useState(cricketProfile);
 
@@ -144,10 +148,8 @@ const CricketProfileStep = ({ onBack }: CricketProfileStepProps) => {
       }
 
       const playerRecord = playerData as any;
-      toast({
-        title: "Registration Complete! 🎉",
-        description: `Your registration ID is: ${playerRecord.registration_id}. We'll contact you soon!`,
-      });
+      setConfirmedRegId(playerRecord.registration_id);
+      setShowCelebration(true);
 
       // Reset form
       resetForm();
@@ -284,6 +286,35 @@ const CricketProfileStep = ({ onBack }: CricketProfileStepProps) => {
           <Send className="ml-2 h-4 w-4" />
         </Button>
       </div>
+
+      {/* Celebration Popup */}
+      <Dialog open={showCelebration} onOpenChange={setShowCelebration}>
+        <DialogContent className="text-center sm:max-w-md">
+          <DialogHeader>
+            <div className="flex justify-center mb-4">
+              <div className="w-20 h-20 rounded-full bg-accent/20 flex items-center justify-center animate-bounce">
+                <PartyPopper className="h-10 w-10 text-accent" />
+              </div>
+            </div>
+            <DialogTitle className="text-3xl font-black text-center">
+              🎉 Registration Complete! 🎉
+            </DialogTitle>
+            <DialogDescription className="text-center text-base pt-2">
+              Congratulations! Your registration for MPL 2026 has been submitted successfully.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="my-4 p-4 rounded-lg bg-card border border-accent/30">
+            <p className="text-sm text-muted-foreground mb-1">Your Registration ID</p>
+            <p className="text-2xl font-black text-accent tracking-wider">{confirmedRegId}</p>
+          </div>
+          <p className="text-sm text-muted-foreground">
+            Save this ID. We'll verify your payment and contact you soon!
+          </p>
+          <Button className="btn-hero w-full mt-4" onClick={() => setShowCelebration(false)}>
+            Done
+          </Button>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
