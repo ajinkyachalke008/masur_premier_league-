@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Trophy, Target, Award, ChevronLeft, Send } from "lucide-react";
 import { useState, useEffect } from "react";
 import FileUpload from "@/components/ui/file-upload";
+import qrAsset from "@/assets/payment-qr.png.asset.json";
 import { useRegistration } from "@/contexts/RegistrationContext";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
@@ -40,6 +41,10 @@ const CricketProfileStep = ({ onBack }: CricketProfileStepProps) => {
 
   const handleSubmit = async () => {
     // Validate required fields
+    if (formData.playingRole && formData.battingStyle && !formData.resumeUrl) {
+      toast({ title: "Payment screenshot required", description: "Please pay using the QR and upload the payment screenshot.", variant: "destructive" });
+      return;
+    }
     if (!formData.playingRole || !formData.battingStyle) {
       toast({
         title: "Missing Information",
@@ -76,11 +81,8 @@ const CricketProfileStep = ({ onBack }: CricketProfileStepProps) => {
         batting_style: formData.battingStyle,
         bowling_style: bowlingStyleFull,
         awards_achievements: formData.awards?.trim() || null,
-        batting_skill: formData.battingSkill,
-        bowling_skill: formData.bowlingSkill,
-        fielding_skill: formData.fieldingSkill,
-        fitness_skill: formData.fitnessSkill,
-        status: 'submitted',
+        resume_url: formData.resumeUrl || null, // payment screenshot
+        status: 'payment_pending_verification',
       };
 
       // Insert without reading back (visitors can't read rows)
@@ -123,7 +125,7 @@ const CricketProfileStep = ({ onBack }: CricketProfileStepProps) => {
             highest_level_played: playerRecord.highest_level_played,
             awards_achievements: playerRecord.awards_achievements,
             
-            resume_url: playerRecord.resume_url,
+            payment_screenshot_url: playerRecord.resume_url,
             batting_skill: playerRecord.batting_skill,
             bowling_skill: playerRecord.bowling_skill,
             fielding_skill: playerRecord.fielding_skill,
@@ -249,73 +251,16 @@ const CricketProfileStep = ({ onBack }: CricketProfileStepProps) => {
         />
       </div>
 
-      {/* Skill Ratings */}
-      <div className="space-y-6 pt-6 border-t border-border">
-        <h4 className="text-lg font-bold text-foreground">Rate Your Skills (1-10)</h4>
-
-        {/* Batting Skill */}
-        <div className="space-y-3">
-          <div className="flex justify-between items-center">
-            <Label>Batting</Label>
-            <span className="text-accent font-bold text-lg">{formData.battingSkill}/10</span>
-          </div>
-          <Slider
-            value={[formData.battingSkill]}
-            onValueChange={(value) => handleSliderChange('battingSkill', value)}
-            max={10}
-            min={1}
-            step={1}
-            className="cursor-pointer"
-          />
+      {/* Payment */}
+      <div className="space-y-4 pt-6 border-t border-border">
+        <h4 className="text-lg font-bold text-foreground">Registration Payment *</h4>
+        <p className="text-sm text-muted-foreground">Scan the QR with Google Pay, PhonePe, Paytm or BHIM and pay the registration fee. Then upload a screenshot of the payment.</p>
+        <img src={qrAsset.url} alt="Payment QR code" className="w-full max-w-xs mx-auto rounded-lg" loading="lazy" />
+        <div className="flex items-center justify-center gap-2">
+          <span className="font-mono text-sm text-foreground">UPI ID: ajinkyachalke008@oksbi</span>
+          <Button type="button" variant="outline" size="sm" onClick={() => { navigator.clipboard.writeText('ajinkyachalke008@oksbi'); toast({ title: 'UPI ID copied' }); }}>Copy</Button>
         </div>
-
-        {/* Bowling Skill */}
-        <div className="space-y-3">
-          <div className="flex justify-between items-center">
-            <Label>Bowling</Label>
-            <span className="text-accent font-bold text-lg">{formData.bowlingSkill}/10</span>
-          </div>
-          <Slider
-            value={[formData.bowlingSkill]}
-            onValueChange={(value) => handleSliderChange('bowlingSkill', value)}
-            max={10}
-            min={1}
-            step={1}
-            className="cursor-pointer"
-          />
-        </div>
-
-        {/* Fielding Skill */}
-        <div className="space-y-3">
-          <div className="flex justify-between items-center">
-            <Label>Fielding</Label>
-            <span className="text-accent font-bold text-lg">{formData.fieldingSkill}/10</span>
-          </div>
-          <Slider
-            value={[formData.fieldingSkill]}
-            onValueChange={(value) => handleSliderChange('fieldingSkill', value)}
-            max={10}
-            min={1}
-            step={1}
-            className="cursor-pointer"
-          />
-        </div>
-
-        {/* Fitness */}
-        <div className="space-y-3">
-          <div className="flex justify-between items-center">
-            <Label>Fitness</Label>
-            <span className="text-accent font-bold text-lg">{formData.fitnessSkill}/10</span>
-          </div>
-          <Slider
-            value={[formData.fitnessSkill]}
-            onValueChange={(value) => handleSliderChange('fitnessSkill', value)}
-            max={10}
-            min={1}
-            step={1}
-            className="cursor-pointer"
-          />
-        </div>
+        <FileUpload folder="payment-screenshots" accept="image/*" maxSizeMB={5} label="Payment Screenshot" required onUploadComplete={handleFileUpload} />
       </div>
 
       {/* Action Buttons */}
