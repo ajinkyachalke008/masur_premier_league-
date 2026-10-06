@@ -1,73 +1,33 @@
-# Welcome to your Lovable project
+# mpl-regi-spark-72670-51320
 
-## Project info
+MPL — Masur Premier League 2025Cricket League Player Registration System(Simplified, Modern, and Professional UI/UX Blueprint)🏆 Project VisionThe goal is to build a smooth and professional player registration system designed exclusively for the MPL — Masur Premier League 2025. The process is simple: players fill the registration form once, upload all required documents, and submit directly without logins or OTP verifications. The admin panel then manages, reviews, and verifies player entries so only approved players become eligible for the league auction.This system should feel effortless for players and efficient for administrators while maintaining a premium, professional league experience.🎯 Core Goal (Simple Words)Players complete one streamlined form with clear steps and visual guidance. Admins have full capability to filter, review, and export player information securely. The final outcome is a verified and organized player database ready for the MPL 2025 auction process.🌐 Main SectionsThe website contains four core sections:Home Page – This is the introduction and landing page with a brief about the league, countdown timer, FAQs, and a clear “Register Now” button.Player Registration Form – A multi-step wizard form where players input all their details step by step with autosave and progress indicators.Player Status Check Page – Players can check their registration status using their registration ID. Status can show Pending, Verified, or Rejected.Admin Panel – For MPL organizers to view all submitted players, verify documents, manage player status, and export lists for auction use.🎨 MPL Brand Visual IdentityThe MPL visual language combines a modern and competitive energy with a professional look inspired by the IPL and ESPN sports broadcasts. The theme revolves around strong contrasts, clean layouts, and vibrant motion, celebrating the spirit of cricket.Brand PersonalityThe MPL design should feel energetic, competitive, and professional. The target mood is modern and bold—appealing to young players, teams, and fans while asserting league prestige. It captures the excitement of a live cricket atmosphere combined with the confidence of a high-end sports platform.Color SystemThe main brand color is MPL Red (#C60927) representing passion and competitive energy.
+Supporting colors include Stadium Black (#0A0A0A) as the primary background, Darker Gray (#1C1C1C) for layering depth, and White (#FFFFFF) for clear visibility of text.
+Trophy Gold (#F5B700) is used as the accent color to mark achievements and highlight premium elements like awards, badges, or category highlights.Red is always used for action items such as buttons or CTAs, while gold highlights indicate recognition and status.TypographyTitles, section headers, and callouts use Montserrat Bold for an athletic, confident tone. Player names and key titles can use Bebas Neue or Anton to emphasize identity. Body content and form labels use Poppins or Inter for clarity and readability, while numeric data and performance stats use Roboto Mono to create a subtle scoreboard effect.
+All major headers are capitalized and slightly spaced out to reinforce a strong league character.Layout and UX PrinciplesThe layout follows a clean, card-based design with smooth rounded corners and large spacing between sections. The maximum content width remains around 1200px on desktop for elegant viewing. Each page contains generous padding (about 40–60px) and only one clear call to action per view. Contrast between dark backgrounds and glowing text ensures both readability and high visual impact. The entire experience should look premium, broadcast-ready, and never cluttered.Visual Style and AnimationUse professional cricket imagery such as player silhouettes, stadium light glows, and light smoke effects in red or gold. The background carries gentle grain textures for depth. Avoid cartoon visuals or unnecessary gradients.Buttons have a ripple effect on click, transitions fade smoothly upward between steps, and the form progress icon animates as a rolling cricket ball. The MPL logo uses a gentle breathing glow effect. Success confirmations may include a short confetti burst or a subtle crowd cheer sound. Animations are short—around 0.2 to 0.5 seconds—with a smooth ease-out motion to keep the interface engaging but not distracting.Shape and IconographyAll corners are softly rounded, usually 8 to 14 pixels. Shadows resemble stadium spotlights—deep but soft. Icons should be modern, stroke-based, minimal, and thematic to cricket. Glassmorphism overlays can be used subtly over backgrounds for a glowing evening-match feel.📝 Player Registration Form (7-Step Wizard)The entire form is divided into seven seamless steps, designed with clarity, visual progress, and validation.Step 1 — Personal InformationPlayers enter their full name, preferred jersey name, date of birth (which auto-calculates age), gender, nationality, state, and city with searchable dropdowns. They provide full address with Google autocomplete, mobile number, and optional email.
+Players upload a profile photo (auto-cropped to round) and a government ID such as Aadhaar, passport, or driving license. The system includes an AI Photo Checker that detects if the photo is too dark, blurry, or if the player’s face is unclear.Step 2 — Cricket ProfileThis step covers playing details such as playing role (batsman, bowler, all-rounder, wicketkeeper), batting and bowling styles, fielding strengths, preferred batting order, and current playing experience level.
+Players mention their current club or academy, highest level played, and any awards or achievements. They can link a YouTube or Drive video highlight and upload a player résumé in PDF format.
+Four interactive skill sliders allow players to rate their batting, bowling, fielding, and fitness on a scale of 1 to 10 through star-based controls.Step 3 — Player PerformancePlayers can optionally input statistics such as matches played in the last two years, total runs, highest score, batting average (auto-calculated), wickets, best bowling figures, economy rate, and fielding records. A performance graph preview automatically creates a simple bar chart showcasing these stats visually.Step 4 — Auction PreferencesPlayers declare whether they are available for auction and set their base price. They select their auction category (Platinum, Gold, Silver, or Rookie) and add a short tagline as an introduction.
+They may also choose a preferred jersey number and select whether they’re categorized as Domestic or Overseas players.
+A live auction card preview instantly shows how their auction profile card will look, displaying player image, name, role, base price, tagline, and top key stats.Step 5 — Fitness and MedicalPlayers rate their fitness level as Excellent, Good, Average, or Recovering. They can describe any recent injuries and must upload a medical certificate confirming they are fit to play. The final field is a required checkbox confirming their “Fit-to-Play” consent.Step 6 — Media and BrandingPlayers add optional social media links such as Instagram or YouTube, upload an action photo, and write a short player quote. A built-in social media poster generator then creates an automatic “Player Showcase Card” for sharing on social platforms and messaging apps.Step 7 — Final SubmissionOnce all steps are completed and reviewed, players receive a registration number (like MPL-2025-0281) and can download a confirmation receipt in PDF format. The submission is stored securely and instantly appears as “Pending Verification” in the admin dashboard.🎛️ Admin Panel (Organizer Interface)The admin area allows organizers to view, manage, and verify all player registrations. Admins can filter entries by role, state, base price, category, or verification status. Each player’s full profile page displays their personal data, documents, performance details, and a live preview of the auction card.
+Admins can approve, reject, or request corrections with a single action. They can export verified players to Excel or CSV files for auction use and download ID and medical documents securely from protected storage.🔐 SecurityEven without player accounts, the system ensures strong data security. The backend runs on a secure PostgreSQL or Supabase database, with files stored privately on S3 or Supabase buckets. Download links for files are time-limited and protected. The admin panel is password-secured, and form submissions are safeguarded with invisible reCAPTCHA to prevent spam or bots.💡 Optional Add-OnsSeveral optional features can be integrated later, including WhatsApp confirmation messages for players, a public player search directory for scouting, a leaderboard system with badges for motivation, and a verified photo badge for authenticity and professional presentation.🪄 Visual Structure OverviewThe Home Page highlights the league’s energy with a hero banner, short introduction, and countdown to registration closure. The registration form appears in a glowing card with a cricket ball progress bar that clearly shows each step. The Player Status Check page allows simple one-click verification by registration ID, and the Admin Dashboard uses dark-themed styling with gold accents and crisp filters.🎯 League Tagline“Play Fearless. Play for Glory. Play MPL 2025.”
 
-**URL**: https://lovable.dev/projects/c2082110-75a6-409f-ac30-eb62352c545c
+This project was built with [Lovable](https://lovable.dev).
 
-## How can I edit this code?
+## Build with Lovable
 
-There are several ways of editing your application.
+Continue developing this project in the [Lovable editor](https://lovable.dev/projects/ead6b4ef-0200-43f0-aa16-9a2a007fd3f5).
 
-**Use Lovable**
+- **Ship faster**: describe what you want to build and Lovable handles the code.
+- **Stay in sync**: every change made in Lovable is committed straight to this repository.
+- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/c2082110-75a6-409f-ac30-eb62352c545c) and start prompting.
+## Development
 
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
+Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
+git clone <this-repository-url>
+cd <repository-name>
 npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
 npm run dev
 ```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/c2082110-75a6-409f-ac30-eb62352c545c) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
