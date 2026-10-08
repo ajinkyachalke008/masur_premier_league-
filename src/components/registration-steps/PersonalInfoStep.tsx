@@ -16,6 +16,8 @@ const PersonalInfoStep = ({ onNext }: PersonalInfoStepProps) => {
   const { toast } = useToast();
   
   const [formData, setFormData] = useState(personalInfo);
+  const [uploading, setUploading] = useState(false);
+  const [errors, setErrors] = useState<Record<string,string>>({});
 
   useEffect(() => {
     setFormData(personalInfo);
@@ -30,16 +32,14 @@ const PersonalInfoStep = ({ onNext }: PersonalInfoStepProps) => {
   };
 
   const validateAndNext = () => {
-    // Validate required fields
-    if (!formData.fullName || !formData.jerseyName || !formData.dateOfBirth ||
-        !formData.city || !formData.mobileNumber || !formData.profilePhotoUrl) {
-      toast({
-        title: "Missing Information",
-        description: "Please fill all required fields and upload required documents.",
-        variant: "destructive",
-      });
-      return;
-    }
+    const nextErrors: Record<string,string> = {};
+    if(formData.fullName.trim().length<2) nextErrors.fullName='Enter your full name.';
+    if(!formData.jerseyName.trim()) nextErrors.jerseyName='Enter your jersey name.';
+    if(!formData.dateOfBirth || isNaN(Date.parse(formData.dateOfBirth)) || Date.parse(formData.dateOfBirth)>=Date.now()) nextErrors.dateOfBirth='Enter a valid date of birth.';
+    if(!/^(?:\+91)?[6-9]\d{9}$/.test(formData.mobileNumber.replace(/[\s-]/g,''))) nextErrors.mobileNumber='Enter a valid 10-digit Indian mobile number.';
+    if(!formData.profilePhotoUrl) nextErrors.profilePhotoUrl='Upload your profile photo.';
+    setErrors(nextErrors);
+    if(Object.keys(nextErrors).length || uploading) return;
 
     // Save to context
     updatePersonalInfo(formData);
@@ -101,20 +101,6 @@ const PersonalInfoStep = ({ onNext }: PersonalInfoStepProps) => {
           />
         </div>
 
-        {/* City */}
-        <div className="space-y-2">
-          <Label htmlFor="city" className="flex items-center gap-2">
-            <MapPin className="h-4 w-4 text-primary" />
-            City *
-          </Label>
-          <Input
-            id="city"
-            placeholder="Enter your city"
-            className="bg-input border-border"
-            value={formData.city}
-            onChange={(e) => handleInputChange('city', e.target.value)}
-          />
-        </div>
       </div>
 
       {/* Mobile Number */}
@@ -125,6 +111,8 @@ const PersonalInfoStep = ({ onNext }: PersonalInfoStepProps) => {
         </Label>
         <Input
           id="mobile"
+          inputMode="tel"
+          autoComplete="tel"
           type="tel"
           placeholder="+91 XXXXX XXXXX"
           className="bg-input border-border"
@@ -143,13 +131,17 @@ const PersonalInfoStep = ({ onNext }: PersonalInfoStepProps) => {
           accept=".jpg,.jpeg,.png"
           maxSizeMB={5}
           label="Profile Photo"
+          required
+          value={formData.profilePhotoUrl}
+          onUploadingChange={setUploading}
           onUploadComplete={(url) => handleFileUpload('profilePhotoUrl', url)}
         />
       </div>
 
+      {Object.entries(errors).map(([field,message]) => <p key={field} role="alert" className="text-sm text-destructive">{message}</p>)}
       {/* Next Button */}
       <div className="flex justify-end pt-6 border-t border-border">
-        <Button onClick={validateAndNext} className="btn-hero min-w-[120px]">
+        <Button disabled={uploading} onClick={validateAndNext} className="btn-hero min-w-[120px]">
           Next
           <ChevronRight className="ml-2 h-4 w-4" />
         </Button>

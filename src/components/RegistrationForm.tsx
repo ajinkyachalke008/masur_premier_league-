@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
-import { ChevronRight, ChevronLeft } from "lucide-react";
+import MplLogo from "./MplLogo";
 import PersonalInfoStep from "./registration-steps/PersonalInfoStep";
 import CricketProfileStep from "./registration-steps/CricketProfileStep";
 import { RegistrationProvider } from "@/contexts/RegistrationContext";
@@ -46,8 +46,9 @@ const RegistrationForm = () => {
     <RegistrationProvider>
       <section id="registration" className="py-20 px-4">
         <div className="container mx-auto max-w-4xl">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-black mb-4 text-foreground">
+          <div className="text-center mb-8">
+            <MplLogo className="mx-auto mb-4 h-24 w-16" />
+            <h2 className="text-3xl md:text-5xl font-black mb-4 text-foreground">
               PLAYER REGISTRATION
             </h2>
             <p className="text-muted-foreground text-lg mb-8">
@@ -55,7 +56,7 @@ const RegistrationForm = () => {
             </p>
           </div>
 
-        <Card className="card-mpl">
+        <Card className="border-t border-accent/30 py-6">
           {/* Progress Bar */}
           <div className="mb-8">
             <div className="flex justify-between items-center mb-4">
@@ -71,8 +72,8 @@ const RegistrationForm = () => {
 
           {/* Step Title */}
           <div className="mb-8 pb-6 border-b border-border">
-            <h3 className="text-2xl font-bold text-foreground flex items-center gap-3">
-              <span className="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-primary-foreground font-black text-lg">
+            <h3 className="text-xl sm:text-2xl font-bold text-foreground flex items-center gap-3">
+              <span className="flex items-center justify-center w-10 h-10 shrink-0 rounded-full bg-primary text-primary-foreground font-black text-lg">
                 {currentStep}
               </span>
               {stepTitles[currentStep - 1]}
