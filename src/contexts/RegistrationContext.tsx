@@ -9,6 +9,7 @@ export interface PersonalInfoData {
   fullAddress: string;
   mobileNumber: string;
   profilePhotoUrl: string;
+  profilePhotoPreview?: string;
   govIdUrl: string;
 }
 

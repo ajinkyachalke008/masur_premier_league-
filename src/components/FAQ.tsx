@@ -17,7 +17,7 @@ const FAQ = () => {
     },
     {
       question: "Is there a registration fee?",
-      answer: "Registration for MPL 2026 is completely free. However, selected players will need to declare their auction base price during the registration process."
+      answer: "Yes, the player registration fee for MPL 2026 is ₹100. You can pay directly via UPI (PhonePe, Google Pay, Paytm) to 9158482736-3@ibl and upload your payment screenshot during registration."
     },
     {
       question: "How will I know if my registration is approved?",
@@ -37,7 +37,7 @@ const FAQ = () => {
     },
     {
       question: "When is the registration deadline?",
-      answer: "Registration closes on March 31, 2026 at 11:59 PM. Make sure to complete your registration before the countdown reaches zero!"
+      answer: "Registration closes on October 25, 2026 at 11:59 PM. Make sure to complete your registration before the countdown reaches zero!"
     }
   ];
 
