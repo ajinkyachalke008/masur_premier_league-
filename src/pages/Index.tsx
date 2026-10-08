@@ -1,7 +1,6 @@
 import Hero from "@/components/Hero";
 import Countdown from "@/components/Countdown";
 import RegistrationForm from "@/components/RegistrationForm";
-import InstallPwaBanner from "@/components/InstallPwaBanner";
 
 const Index = () => {
   return (
@@ -9,7 +8,6 @@ const Index = () => {
       <Hero />
       <Countdown />
       <RegistrationForm />
-      <InstallPwaBanner />
       
       {/* Footer */}
       <footer className="py-8 px-4 border-t border-border">
