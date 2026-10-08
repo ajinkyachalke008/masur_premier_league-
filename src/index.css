@@ -1,168 +1,41 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-/* MPL 2025 Design System - All colors, gradients, fonts, and effects defined here. 
-All colors MUST be HSL. */
-
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Poppins:wght@300;400;500;600;700&family=Bebas+Neue&display=swap');
-
 @layer base {
-  :root {
-    /* MPL Brand Colors - Stadium Black Theme */
-    --background: 0 0% 4%;  /* Stadium Black #0A0A0A */
-    --foreground: 0 0% 100%;  /* White */
-
-    --card: 0 0% 11%;  /* Darker Gray #1C1C1C */
-    --card-foreground: 0 0% 100%;
-
-    --popover: 0 0% 11%;
-    --popover-foreground: 0 0% 100%;
-
-    --primary: 352 91% 40%;  /* MPL Red #C60927 */
-    --primary-foreground: 0 0% 100%;
-
-    --secondary: 0 0% 11%;  /* Darker Gray */
-    --secondary-foreground: 0 0% 100%;
-
-    --muted: 0 0% 20%;
-    --muted-foreground: 0 0% 65%;
-
-    --accent: 45 97% 48%;  /* Trophy Gold #F5B700 */
-    --accent-foreground: 0 0% 4%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 100%;
-
-    --border: 0 0% 20%;
-    --input: 0 0% 15%;
-    --ring: 352 91% 40%;
-
-    --radius: 0.75rem;
-
-    /* MPL Custom Tokens */
-    --mpl-red: 352 91% 40%;
-    --mpl-gold: 45 97% 48%;
-    --stadium-black: 0 0% 4%;
-    --darker-gray: 0 0% 11%;
-    
-    /* Shadows & Effects */
-    --shadow-glow-red: 0 0 40px hsl(352 91% 40% / 0.3);
-    --shadow-glow-gold: 0 0 30px hsl(45 97% 48% / 0.2);
-    --shadow-card: 0 10px 40px -10px hsl(0 0% 0% / 0.5);
-    
-    /* Transitions */
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-
-  .dark {
-    /* Same as root for dark-first design */
-    --background: 0 0% 4%;
-    --foreground: 0 0% 100%;
-    --card: 0 0% 11%;
-    --card-foreground: 0 0% 100%;
-    --popover: 0 0% 11%;
-    --popover-foreground: 0 0% 100%;
-    --primary: 352 91% 40%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 0 0% 11%;
-    --secondary-foreground: 0 0% 100%;
-    --muted: 0 0% 20%;
-    --muted-foreground: 0 0% 65%;
-    --accent: 45 97% 48%;
-    --accent-foreground: 0 0% 4%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 0 0% 20%;
-    --input: 0 0% 15%;
-    --ring: 352 91% 40%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-}
-
-@layer base {
-  * {
-    @apply border-border;
-  }
-
-  body {
-    @apply bg-background text-foreground;
-    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  }
-  
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    letter-spacing: 0.02em;
-  }
-}
-
+ :root,.dark {
+ --background: 20 9% 4%; --foreground: 0 0% 98%;
+ --card: 20 6% 8%; --card-foreground: 0 0% 98%;
+ --popover: 20 6% 10%; --popover-foreground: 0 0% 98%;
+ --primary: 25 100% 50%; --primary-foreground: 0 0% 4%;
+ --secondary: 20 5% 10%; --secondary-foreground: 0 0% 98%;
+ --muted: 20 5% 16%; --muted-foreground: 30 8% 72%;
+ --accent: 45 100% 64%; --accent-foreground: 0 0% 4%;
+ --destructive: 0 72% 55%; --destructive-foreground: 0 0% 100%;
+ --border: 25 10% 22%; --input: 20 5% 12%; --ring: 40 100% 50%; --radius: .5rem;
+ --mpl-red: 0 72% 35%; --mpl-gold: 45 100% 64%; --stadium-black: 0 0% 4%; --darker-gray: 20 6% 8%;
+ --gradient-primary: linear-gradient(110deg,hsl(var(--primary)),hsl(var(--accent)));
+ --shadow-glow-gold: 0 6px 24px hsl(var(--accent)/.14); --shadow-card: 0 12px 30px hsl(var(--background)/.4);
+ --sidebar-background: 20 6% 8%; --sidebar-foreground: 0 0% 98%; --sidebar-primary: 25 100% 50%; --sidebar-primary-foreground: 0 0% 4%; --sidebar-accent: 20 5% 16%; --sidebar-accent-foreground: 0 0% 98%; --sidebar-border: 25 10% 22%; --sidebar-ring: 40 100% 50%;
+ --qr-paper: 0 0% 100%;
+ }
+ * { @apply border-border; }
+ body { @apply bg-background text-foreground; margin:0; font-family:'Barlow',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; }
+ h1,h2,h3,h4,h5,h6 {font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-weight:700;letter-spacing:0;}
+ input,select,textarea {font-size:16px!important;min-width:0;}
+ button,a,input,textarea {touch-action:manipulation;}
+ img {max-width:100%;}
+ }
 @layer components {
-  /* MPL Hero Button */
-  .btn-hero {
-    @apply bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-300;
-    @apply shadow-lg hover:shadow-xl hover:scale-105;
-    box-shadow: var(--shadow-glow-red);
-  }
-  
-  /* MPL Gold Button */
-  .btn-gold {
-    @apply bg-accent text-accent-foreground hover:bg-accent/90 transition-all duration-300;
-    @apply shadow-lg hover:shadow-xl hover:scale-105;
-    box-shadow: var(--shadow-glow-gold);
-  }
-  
-  /* MPL Card */
-  .card-mpl {
-    @apply bg-card border border-border rounded-xl p-6;
-    box-shadow: var(--shadow-card);
-  }
-  
-  /* Glow Text */
-  .text-glow-red {
-    text-shadow: 0 0 20px hsl(var(--primary) / 0.5);
-  }
-  
-  .text-glow-gold {
-    text-shadow: 0 0 20px hsl(var(--accent) / 0.5);
-  }
-  
-  /* Hover Scale Animation */
-  .hover-scale {
-    @apply transition-transform duration-200 hover:scale-105;
-  }
-  
-  /* MPL Logo Glow Animation */
-  @keyframes logo-glow-pulse {
-    0%, 100% {
-      filter: drop-shadow(0 0 40px rgba(198, 9, 39, 0.6))
-              drop-shadow(0 0 60px rgba(198, 9, 39, 0.4))
-              drop-shadow(0 0 80px rgba(245, 183, 0, 0.3));
-    }
-    50% {
-      filter: drop-shadow(0 0 50px rgba(198, 9, 39, 0.8))
-              drop-shadow(0 0 70px rgba(198, 9, 39, 0.5))
-              drop-shadow(0 0 90px rgba(245, 183, 0, 0.4));
-    }
-  }
-  
-  .animate-logo-glow {
-    animation: logo-glow-pulse 3s ease-in-out infinite;
-  }
-}
+ .btn-hero,.btn-gold {background:var(--gradient-primary);color:hsl(var(--primary-foreground));box-shadow:var(--shadow-glow-gold);transition:filter .2s;}
+ .btn-hero:hover,.btn-gold:hover {filter:brightness(1.08);}
+ .card-mpl { @apply bg-card border border-border rounded-lg p-5 sm:p-8;box-shadow:var(--shadow-card); }
+ .sports-heading {font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-weight:800;letter-spacing:0;}
+ .mpl-hero {min-height: min(860px,92svh);}
+ .hero-shade {background:linear-gradient(180deg,hsl(var(--background)/.8),hsl(var(--background)/.9) 65%,hsl(var(--background)));}
+ .hero-logo {height:270px;width:200px;}
+ .qr-paper {background:hsl(var(--qr-paper));}
+ .text-glow-gold {text-shadow:0 0 20px hsl(var(--accent)/.2);}
+ }
+@media(min-width:768px){.hero-logo{height:310px;width:230px;}}
+@media(max-height:760px){.hero-logo{height:210px;width:160px;}.mpl-hero{min-height:0;}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important;}}

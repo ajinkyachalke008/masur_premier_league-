@@ -1,6 +1,5 @@
 import Hero from "@/components/Hero";
 import Countdown from "@/components/Countdown";
-import FAQ from "@/components/FAQ";
 import RegistrationForm from "@/components/RegistrationForm";
 
 const Index = () => {
@@ -9,7 +8,6 @@ const Index = () => {
       <Hero />
       <Countdown />
       <RegistrationForm />
-      <FAQ />
       
       {/* Footer */}
       <footer className="py-8 px-4 border-t border-border">
