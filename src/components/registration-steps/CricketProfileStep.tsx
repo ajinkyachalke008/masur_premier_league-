@@ -14,6 +14,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import RegistrationReceipt, { ReceiptData } from "@/components/RegistrationReceipt";
 import { BorderBeam } from "@/components/ui/border-beam";
+import { REGISTRATION_OPEN, REGISTRATION_CLOSED_MESSAGE } from "@/config/registration";
 
 interface CricketProfileStepProps {
   onBack: () => void;
@@ -74,6 +75,14 @@ const generateUUID = () => {
   const [requestKey] = useState(() => generateUUID());
 
   const handleSubmit = async () => {
+    if (!REGISTRATION_OPEN) {
+      toast({
+        title: "Registration Closed",
+        description: REGISTRATION_CLOSED_MESSAGE,
+        variant: "destructive",
+      });
+      return;
+    }
     if (!personalInfo.fullName?.trim()) {
       toast({ title: "Name required", description: "Please enter your full name in Step 1.", variant: "destructive" });
       return;

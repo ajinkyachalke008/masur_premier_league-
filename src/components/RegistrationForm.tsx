@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
@@ -7,10 +8,40 @@ import PersonalInfoStep from "./registration-steps/PersonalInfoStep";
 import CricketProfileStep from "./registration-steps/CricketProfileStep";
 import { RegistrationProvider } from "@/contexts/RegistrationContext";
 import { BorderBeam } from "@/components/ui/border-beam";
+import { REGISTRATION_OPEN, REGISTRATION_CLOSED_MESSAGE } from "@/config/registration";
+import closedPoster from "@/assets/mpl-2026-registration-closed.png";
 
 const TOTAL_STEPS = 2;
 
 const RegistrationForm = () => {
+  if (!REGISTRATION_OPEN) {
+    return (
+      <section id="registration" className="py-8 sm:py-16 px-4">
+        <div className="container mx-auto max-w-xl text-center">
+          <Card className="relative border-accent/40 bg-card/90 p-5 sm:p-6 rounded-2xl shadow-xl overflow-hidden">
+            <BorderBeam size={240} duration={8} borderWidth={1.5} colorFrom="#ff6a00" colorTo="#ffc83d" />
+            <img
+              src={closedPoster}
+              alt="MPL 2026 Registration Closed"
+              className="w-full h-auto object-contain rounded-xl mb-4 max-w-md mx-auto block"
+              width={480}
+              height={512}
+            />
+            <h2 className="sports-heading text-2xl sm:text-3xl font-black text-foreground uppercase mb-2">
+              Registration Closed
+            </h2>
+            <p className="text-xs sm:text-sm text-muted-foreground mb-4">
+              {REGISTRATION_CLOSED_MESSAGE}
+            </p>
+            <Button asChild variant="outline" className="border-accent/40 text-accent">
+              <Link to="/admin">Go to Admin Panel</Link>
+            </Button>
+          </Card>
+        </div>
+      </section>
+    );
+  }
+
   const [currentStep, setCurrentStep] = useState(1);
 
   const stepTitles = [

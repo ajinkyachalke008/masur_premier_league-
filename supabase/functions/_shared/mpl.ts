@@ -1,6 +1,7 @@
 import { createClient } from 'npm:@supabase/supabase-js@2';
 import { corsHeaders } from 'npm:@supabase/supabase-js@2/cors';
 export { corsHeaders };
+export const REGISTRATION_OPEN = false;
 export const json = (body: unknown, status = 200) => new Response(JSON.stringify(body), {status, headers:{...corsHeaders,'Content-Type':'application/json'}});
 export function db() { const url=Deno.env.get('SUPABASE_URL'), key=Deno.env.get('SUPABASE_SERVICE_ROLE_KEY'); if(!url || !key) throw new Error('Service unavailable'); return createClient(url,key,{auth:{persistSession:false,autoRefreshToken:false}}); }
 export type Meta = {hash?:string; telegram_status:string; payment_status:string; steps:Record<string,number>; attempts:number; error?:string; updated_at?:string};

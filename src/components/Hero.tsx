@@ -8,6 +8,7 @@ import GifText from '@/components/ui/gif-text';
 
 import { BorderBeam } from '@/components/ui/border-beam';
 import InstallPwaButton from './InstallPwaButton';
+import { REGISTRATION_OPEN } from '@/config/registration';
 
 const Hero = () => (
   <section className="mpl-hero relative overflow-hidden flex flex-col justify-between">
@@ -98,16 +99,18 @@ const Hero = () => (
       </p>
       
       <div className="mt-5 sm:mt-6 flex w-full max-w-xs sm:max-w-sm flex-col gap-2.5 sm:gap-3 px-2">
-        <Button
-          className="btn-hero h-12 text-sm sm:text-base font-bold tracking-wide"
-          onClick={() =>
-            document.getElementById('registration')?.scrollIntoView({
-              behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
-            })
-          }
-        >
-          PLAYER REGISTRATION <ArrowRight className="ml-2 h-4 w-4" />
-        </Button>
+        {REGISTRATION_OPEN ? (
+          <Button
+            className="btn-hero h-12 text-sm sm:text-base font-bold tracking-wide"
+            onClick={() =>
+              document.getElementById('registration')?.scrollIntoView({
+                behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+              })
+            }
+          >
+            PLAYER REGISTRATION <ArrowRight className="ml-2 h-4 w-4" />
+          </Button>
+        ) : null}
         <Button
           asChild
           variant="outline"
@@ -119,8 +122,14 @@ const Hero = () => (
         </Button>
       </div>
       
-      <p className="mt-4 sm:mt-5 flex items-center gap-1.5 text-[11px] sm:text-xs text-muted-foreground">
-        Registration closes 20 October 2026 <ArrowDown className="h-3 w-3" />
+      <p className="mt-4 sm:mt-5 flex items-center gap-1.5 text-[11px] sm:text-xs text-muted-foreground font-semibold">
+        {REGISTRATION_OPEN ? (
+          <>
+            Registration closes 20 October 2026 <ArrowDown className="h-3 w-3" />
+          </>
+        ) : (
+          "Player registration for MPL 2026 is officially closed."
+        )}
       </p>
     </div>
   </section>

@@ -2,11 +2,13 @@ import { useEffect, useState } from 'react';
 import { BorderBeam } from './ui/border-beam';
 import { Clock } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { REGISTRATION_OPEN } from '@/config/registration';
 
 const deadline = new Date('2026-10-25T23:59:59+05:30').getTime();
 const remaining = () => Math.max(0, deadline - Date.now());
 
 export default function Countdown() {
+  if (!REGISTRATION_OPEN) return null;
   const [time, setTime] = useState(remaining);
 
   useEffect(() => {

@@ -7,6 +7,7 @@ import { useRegistration } from "@/contexts/RegistrationContext";
 import { useToast } from "@/hooks/use-toast";
 import { useEffect, useState, useMemo } from "react";
 import { BorderBeam } from "@/components/ui/border-beam";
+import { REGISTRATION_OPEN, REGISTRATION_CLOSED_MESSAGE } from "@/config/registration";
 
 interface PersonalInfoStepProps {
   onNext: () => void;
@@ -107,6 +108,14 @@ const PersonalInfoStep = ({ onNext }: PersonalInfoStepProps) => {
   };
 
   const validateAndNext = () => {
+    if (!REGISTRATION_OPEN) {
+      toast({
+        title: "Registration Closed",
+        description: REGISTRATION_CLOSED_MESSAGE,
+        variant: "destructive",
+      });
+      return;
+    }
     if (uploading) {
       toast({
         title: "Photo is uploading",

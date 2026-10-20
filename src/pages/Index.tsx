@@ -1,13 +1,21 @@
+import { REGISTRATION_OPEN } from "@/config/registration";
 import Hero from "@/components/Hero";
+import RegistrationClosedHero from "@/components/RegistrationClosedHero";
 import Countdown from "@/components/Countdown";
 import RegistrationForm from "@/components/RegistrationForm";
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
-      <Hero />
-      <Countdown />
-      <RegistrationForm />
+      {REGISTRATION_OPEN ? (
+        <>
+          <Hero />
+          <Countdown />
+          <RegistrationForm />
+        </>
+      ) : (
+        <RegistrationClosedHero />
+      )}
       
       {/* Footer */}
       <footer className="py-8 px-4 border-t border-border">

@@ -1,8 +1,9 @@
 import {useState,useRef,useEffect} from 'react';
 import {Upload,Loader2,X,RefreshCw,CheckCircle} from 'lucide-react';
 import {supabase} from '@/integrations/supabase/client';
-import {Button} from './button';
+import { Button } from './button';
 import { BorderBeam } from './border-beam';
+import { REGISTRATION_OPEN } from '@/config/registration';
 
 interface Props {
   folder: 'profile-photos' | 'payment-screenshots' | 'government-ids' | 'resumes' | 'medical-certs';
@@ -94,6 +95,11 @@ export default function FileUpload({
   const select = async (e: React.ChangeEvent<HTMLInputElement>) => {
     let file = e.target.files?.[0];
     if (!file) return;
+    if (!REGISTRATION_OPEN) {
+      setError('Player registration for MPL 2026 is officially closed.');
+      if (input.current) input.current.value = '';
+      return;
+    }
     setError('');
     setUploading(true);
     onUploadingChange?.(true);
